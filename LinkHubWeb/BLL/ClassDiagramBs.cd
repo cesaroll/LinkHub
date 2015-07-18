@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BLL.Areas.AdminAreaBs" Collapsed="true">
+    <Position X="6.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\AdminAreaBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Areas.BaseAreaBs" Collapsed="true">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAQABAAAAQQ=</HashCode>
+      <FileName>Areas\BaseAreaBs.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BLL.Areas.CommonAreaBs" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\CommonAreaBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Areas.SecurityAreaBs" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\SecurityAreaBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Areas.UserAreaBs" Collapsed="true">
+    <Position X="10.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\UserAreaBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Base.BaseBs&lt;T&gt;" Collapsed="true">
+    <Position X="8.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAgAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Base\BaseBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Entities.CategoryBs" Collapsed="true">
+    <Position X="10.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Entities\CategoryBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Entities.UrlBs" Collapsed="true">
+    <Position X="6.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAEAAAAgAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Entities\UrlBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.UserBs" Collapsed="true">
+    <Position X="8.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Entities\UserBs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BLL.Areas.IAreaBs">
+    <Position X="11.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAABAAAAAQ=</HashCode>
+      <FileName>Areas\IAreaBs.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

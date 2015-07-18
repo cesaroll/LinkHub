@@ -1,0 +1,47 @@
+﻿@using BLL.Util
+@model IEnumerable<BOL.T_Url>
+
+@{
+    Response response = TempData["Resp"] as Response;
+}
+
+@if (response != null)
+{
+    if (response.HasMsgs)
+    {
+        <div class="alert alert-dismissable alert-info">
+            <button type="button" class="close"data-dismiss="alert">x</button>
+            @foreach (Msg msg in response)
+            {
+                @msg.Text
+                <br />
+            }
+        </div>
+    }
+}
+
+<table class="table">
+    <tr>
+        <th>@Html.CheckBox("selectall")</th>
+        <th>@Html.DisplayNameFor(model => model.UrlTitle)</th>
+        <th>@Html.DisplayNameFor(model => model.Url)</th>
+        <th>@Html.DisplayNameFor(model => model.UrlDesc)</th>
+        <th>@Html.DisplayNameFor(model => model.IsApproved)</th>
+        <th>@Html.DisplayNameFor(model => model.T_Category.CategoryName)</th>
+        <th>@Html.DisplayNameFor(model => model.T_User.UserEmail)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.CheckBox(item.UrlId.ToString(), false, new { @class = "ckb", Id = item.UrlId })</td>
+            <td>@Html.DisplayFor(modelItem => item.UrlTitle)</td>
+            <td><a target="_blank" href="@item.Url">@item.Url</a></td>
+            <td>@Html.DisplayFor(modelItem => item.UrlDesc)</td>
+            <td>@Html.DisplayFor(modelItem => item.IsApproved)</td>
+            <td>@Html.DisplayFor(modelItem => item.T_Category.CategoryName)</td>
+            <th>@Html.DisplayFor(modelItem => item.T_User.UserEmail)</th>
+        </tr>
+    }
+
+</table>

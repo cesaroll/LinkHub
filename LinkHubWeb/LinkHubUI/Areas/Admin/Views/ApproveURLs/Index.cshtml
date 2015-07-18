@@ -1,0 +1,165 @@
+﻿@using System.Web.UI.WebControls
+@using BOL
+@model IEnumerable<T_Url>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $(document).ajaxStart(function () {
+            $("#loading").show();
+        });
+
+        $(document).ajaxStop(function () {
+            $("#loading").hide();
+        });
+
+        /***************************************************************************/
+        /* ***                    Select /  Deselect All                       *** */
+        /***************************************************************************/
+
+        BindSelectAll();
+
+        /***************************************************************************/
+        /* ***                     Approve On Click  (Ajax)                    *** */
+        /***************************************************************************/
+        $("#Approve").click(function () {
+
+            checkedIds = $('.ckb').filter(":checked").map(function () { return this.id; });
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApproveOrRejectAll","ApproveURLs")",
+                traditional: true,
+                data: { Ids: checkedIds.toArray(), Status: "A", currentStatusTab: "@ViewBag.Status" },
+                success: successFunc,
+                error: errorFunc,
+                xhrFields:{withCredentials: true}
+            });
+
+            function successFunc(data, status) {
+                $("#Data").html(data);
+                BindSelectAll();
+            }
+
+            function errorFunc(data, status) {
+                alert('error');
+            }
+
+        });
+
+        /***************************************************************************/
+        /* ***                     Reject On Click  (Ajax)                    *** */
+        /***************************************************************************/
+        $("#Reject").click(function () {
+
+            checkedIds = $('.ckb').filter(":checked").map(function () { return this.id; });
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApproveOrRejectAll","ApproveURLs")",
+                traditional: true,
+                data: { ids: checkedIds.toArray(), status: "R", currentStatusTab: "@ViewBag.Status" },
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                $("#Data").html(data);
+                BindSelectAll();
+                //alert(data);
+                //location.reload();
+            }
+
+            function errorFunc(data, status) {
+                alert('error');
+            }
+
+        });
+
+
+
+    });
+
+    /***************************************************************************/
+    /* ***                 Select /  Deselect All Function                 *** */
+    /***************************************************************************/
+    function BindSelectAll() {
+        $("#selectall").click(function (event) { //onclik of "selectall" check box
+
+            var isChecked = this.checked;
+
+            $('.ckb').each(function () { //loop through each checkbox
+                this.checked = isChecked; // Select / deselect all check boxes with class "ckb"
+            });
+
+        });
+    }
+
+    function ConfirmApprove() {
+        return confirm('Are you sure you want to Approve?');
+    }
+    function ConfirmReject() {
+        return confirm('Are you sure you want to Reject?');
+    }
+</script>
+
+
+
+<h2>Manage URLs</h2>
+
+<div id="loading" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Loading...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" style="width:100%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-pills">
+    @if (ViewBag.Status == "P")
+    {
+        <b>@Html.ActionLink("Pending Urls", "Index", new {Status = "P"})</b>
+    }
+    else
+    {
+        @Html.ActionLink("Pending Urls", "Index", new { Status = "P" })
+    }
+    |
+    @if (ViewBag.Status == "A")
+    {
+        <b>@Html.ActionLink("Approved Urls", "Index", new { Status = "A" })</b>
+    }
+    else
+    {
+        @Html.ActionLink("Approved Urls", "Index", new { Status = "A" })
+    }
+    |
+    @if (ViewBag.Status == "R")
+    {
+        <b>@Html.ActionLink("Rejected Urls", "Index", new { Status = "R" })</b>
+    }
+    else
+    {
+        @Html.ActionLink("Rejected Urls", "Index", new { Status = "R" })
+    }
+</ul>
+
+<div id="Data">
+    @Html.Partial("pvApproveURLs",Model)
+</div>
+
+<input type="button" id="Approve" value="Approve" class="btn btn-primary" /> |
+<input type="button" id="Reject" value="Reject" class="btn btn-primary" />

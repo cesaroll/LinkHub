@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkHubUI", "LinkHubUI\LinkHubUI.csproj", "{ACF37EBD-A508-4281-8619-301E7D64B7F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOL", "BOL\BOL.csproj", "{D9A8B2BD-5276-49A6-BA40-779958716ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{C9CD2086-8DB7-45D4-83E6-81CAE43725B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{69CBDEB9-5C6A-49F4-BA19-A8F45EDF73E6}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://vmtfs13:8080/tfs/vlab
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = LinkHubUI\\LinkHubUI.csproj
+		SccProjectName1 = LinkHubUI
+		SccLocalPath1 = LinkHubUI
+		SccProjectUniqueName2 = BOL\\BOL.csproj
+		SccProjectName2 = BOL
+		SccLocalPath2 = BOL
+		SccProjectUniqueName3 = BLL\\BLL.csproj
+		SccProjectName3 = BLL
+		SccLocalPath3 = BLL
+		SccProjectUniqueName4 = DAL\\DAL.csproj
+		SccProjectName4 = DAL
+		SccLocalPath4 = DAL
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACF37EBD-A508-4281-8619-301E7D64B7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF37EBD-A508-4281-8619-301E7D64B7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF37EBD-A508-4281-8619-301E7D64B7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF37EBD-A508-4281-8619-301E7D64B7F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A8B2BD-5276-49A6-BA40-779958716ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A8B2BD-5276-49A6-BA40-779958716ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A8B2BD-5276-49A6-BA40-779958716ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A8B2BD-5276-49A6-BA40-779958716ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9CD2086-8DB7-45D4-83E6-81CAE43725B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9CD2086-8DB7-45D4-83E6-81CAE43725B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9CD2086-8DB7-45D4-83E6-81CAE43725B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9CD2086-8DB7-45D4-83E6-81CAE43725B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69CBDEB9-5C6A-49F4-BA19-A8F45EDF73E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69CBDEB9-5C6A-49F4-BA19-A8F45EDF73E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69CBDEB9-5C6A-49F4-BA19-A8F45EDF73E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69CBDEB9-5C6A-49F4-BA19-A8F45EDF73E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

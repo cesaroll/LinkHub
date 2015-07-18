@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BOL.T_Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function ConfirmDelete() {
+        return confirm('Are yu sure you want to delete?');
+    }
+</script>
+
+<h2>Index</h2>
+
+@if (TempData["Msg"] != null)
+{
+    <h3>@TempData["Msg"].ToString()</h3>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new
+                            {
+                                SortOrder = (ViewBag.SortOrder == null ? "ASC" : (ViewBag.SortOrder == "ASC" ? "DESC" : "ASC")),
+                                SortBy = "Name",
+                                Page = ViewBag.Page ?? "1"
+                            })
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new
+                            {
+                                SortOrder = (ViewBag.SortOrder == null ? "ASC" : (ViewBag.SortOrder == "ASC" ? "DESC" : "ASC")),
+                                SortBy = "Description",
+                                Page = ViewBag.Page ?? "1"
+                            })
+        </th>
+        <th>Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new{id = item.CategoryId}, new{onclick="return ConfirmDelete()"})
+        </td>
+    </tr>
+}
+
+</table>
+
+@{
+    int TotalPages = @ViewBag.TotalPages;
+}
+@for (int i = 1; i <= TotalPages; i++)
+{
+    if (i == ViewBag.Page)
+    {
+        <b>
+            @Html.ActionLink(i + " ", "Index", new
+        {
+            SortOrder = ViewBag.SortOrder ?? "ASC",
+            SortBy = ViewBag.SortBy ?? "Name",
+            Page = i
+        })
+        </b>
+    }
+    else
+    {
+        @Html.ActionLink(i + " ", "Index", new
+        {
+            SortOrder = ViewBag.SortOrder ?? "ASC",
+            SortBy = ViewBag.SortBy ?? "Name",
+            Page = i
+        })
+    }
+}

@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LinkHubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryDesc" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Url">
+          <Key>
+            <PropertyRef Name="UrlId" />
+          </Key>
+          <Property Name="UrlId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UrlTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UrlDesc" Type="varchar(max)" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="IsApproved" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_T_Url_T_Category">
+          <End Role="T_Category" Type="Self.T_Category" Multiplicity="0..1" />
+          <End Role="T_Url" Type="Self.T_Url" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="T_Url">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Url_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1" />
+          <End Role="T_Url" Type="Self.T_Url" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Url">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LinkHubModelStoreContainer">
+          <EntitySet Name="T_Category" EntityType="Self.T_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Url" EntityType="Self.T_Url" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_User" EntityType="Self.T_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_T_Url_T_Category" Association="Self.FK_T_Url_T_Category">
+            <End Role="T_Category" EntitySet="T_Category" />
+            <End Role="T_Url" EntitySet="T_Url" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Url_T_User" Association="Self.FK_T_Url_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Url" EntitySet="T_Url" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LinkHubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CategoryDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_Url" Relationship="Self.FK_T_Url_T_Category" FromRole="T_Category" ToRole="T_Url" />
+        </EntityType>
+        <EntityType Name="T_Url">
+          <Key>
+            <PropertyRef Name="UrlId" />
+          </Key>
+          <Property Name="UrlId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UrlTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UrlDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="IsApproved" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Category" Relationship="Self.FK_T_Url_T_Category" FromRole="T_Url" ToRole="T_Category" />
+          <NavigationProperty Name="T_User" Relationship="Self.FK_T_Url_T_User" FromRole="T_Url" ToRole="T_User" />
+        </EntityType>
+        <EntityType Name="T_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_Url" Relationship="Self.FK_T_Url_T_User" FromRole="T_User" ToRole="T_Url" />
+        </EntityType>
+        <Association Name="FK_T_Url_T_Category">
+          <End Role="T_Category" Type="Self.T_Category" Multiplicity="0..1" />
+          <End Role="T_Url" Type="Self.T_Url" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="T_Url">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Url_T_User">
+          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1" />
+          <End Role="T_Url" Type="Self.T_Url" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="T_Url">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LinkHubEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_Category" EntityType="Self.T_Category" />
+          <EntitySet Name="T_Url" EntityType="Self.T_Url" />
+          <EntitySet Name="T_User" EntityType="Self.T_User" />
+          <AssociationSet Name="FK_T_Url_T_Category" Association="Self.FK_T_Url_T_Category">
+            <End Role="T_Category" EntitySet="T_Category" />
+            <End Role="T_Url" EntitySet="T_Url" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Url_T_User" Association="Self.FK_T_Url_T_User">
+            <End Role="T_User" EntitySet="T_User" />
+            <End Role="T_Url" EntitySet="T_Url" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LinkHubModelStoreContainer" CdmEntityContainer="LinkHubEntities">
+          <EntitySetMapping Name="T_Category">
+            <EntityTypeMapping TypeName="LinkHubModel.T_Category">
+              <MappingFragment StoreEntitySet="T_Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryDesc" ColumnName="CategoryDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Url">
+            <EntityTypeMapping TypeName="LinkHubModel.T_Url">
+              <MappingFragment StoreEntitySet="T_Url">
+                <ScalarProperty Name="UrlId" ColumnName="UrlId" />
+                <ScalarProperty Name="UrlTitle" ColumnName="UrlTitle" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="UrlDesc" ColumnName="UrlDesc" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_User">
+            <EntityTypeMapping TypeName="LinkHubModel.T_User">
+              <MappingFragment StoreEntitySet="T_User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

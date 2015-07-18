@@ -1,0 +1,99 @@
+﻿@model IEnumerable<BOL.T_Url>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>URLs</h2>
+
+<table class="table table-striped table-bordered table-hover">
+    <tr class="info">
+        <th>
+            @Html.ActionLink("Title", "Index", new
+                            {
+                                SortOrder = (ViewBag.SortOrder == null ? "ASC" : (ViewBag.SortOrder == "ASC"? "DESC" : "ASC")), 
+                                SortBy = "Title",
+                                Page = ViewBag.Page ?? "1"
+                            } )
+        </th>
+        <th>
+            @Html.ActionLink("Url", "Index", new
+                            {
+                                SortOrder = (ViewBag.SortOrder == null ? "ASC" : (ViewBag.SortOrder == "ASC" ? "DESC" : "ASC")),
+                                SortBy = "Url",
+                                Page = ViewBag.Page ?? "1"
+                            })
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new
+                            {
+                                SortOrder = (ViewBag.SortOrder == null ? "ASC" : (ViewBag.SortOrder == "ASC" ? "DESC" : "ASC")),
+                                SortBy = "Description",
+                                Page = ViewBag.Page ?? "1"
+                            })
+        </th>
+        <th>
+            @Html.ActionLink("Category", "Index", new
+                            {
+                                SortOrder = (ViewBag.SortOrder == null ? "ASC" : (ViewBag.SortOrder == "ASC" ? "DESC" : "ASC")),
+                                SortBy = "Category",
+                                Page = ViewBag.Page ?? "1"
+                            })
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlTitle)
+        </td>
+        <td>
+            <a target="_blank" href="@item.Url">@item.Url</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlDesc)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.T_Category.CategoryName)
+        </td>
+      
+    </tr>
+}
+
+</table>
+
+@{
+    int TotalPages = @ViewBag.TotalPages;
+}
+
+<ul class="pagination">
+        @for (int i = 1; i <= TotalPages; i++)
+        {  
+
+            if (i == ViewBag.Page)
+            {
+                <li class="active">
+                    @Html.ActionLink(i + " ", "Index", new
+                    {
+                        SortOrder = ViewBag.SortOrder ?? "ASC",
+                        SortBy = ViewBag.SortBy ?? "Title",
+                        Page = i
+                    })
+                </li>
+            }
+            else
+            {
+                <li>
+                    @Html.ActionLink(i + " ", "Index", new
+                    {
+                        SortOrder = ViewBag.SortOrder ?? "ASC",
+                        SortBy = ViewBag.SortBy ?? "Title",
+                        Page = i
+                    })
+                </li>
+            }
+        }
+</ul>
